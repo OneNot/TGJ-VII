@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class TubeDudeBehavior : MonoBehaviour {
 
+    private Rigidbody rb;
     public float moveSpeed = 1;
     public float rotSpeed = 1;
+    public float roamSpeed;
+    public float roamDelay;
+    public float roamWalkDuration;
+    
 
-    bool isWandering = false;
-    bool isFollowing = true;
+    public bool isWandering = false;
+    public bool isFollowing = true;
 
 	// Use this for initialization
 	void Start () {
-        
+        rb = transform.GetComponent<Rigidbody>();
     }
 	
 	// Update is called once per frame
@@ -38,11 +43,12 @@ public class TubeDudeBehavior : MonoBehaviour {
                 FollowMaster();
             }
         }
-
         else if (isWandering == true)
         {
             //Calls the function to wander around
-            WanderAround();
+            StartCoroutine(WanderAroundRotate());
+            StartCoroutine(WanderAroundWalk());
+            
         }
     }
 
@@ -52,8 +58,30 @@ public class TubeDudeBehavior : MonoBehaviour {
         transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 
-    public void WanderAround()
-    {
+    //Bool value used for timing coroutine properly
+    bool running = false;
 
+    private IEnumerator WanderAroundRotate()
+    {
+        if (!running)
+        {
+            running = true;
+            yield return new WaitForSeconds(roamDelay);
+
+            Vector3 euler = transform.eulerAngles;
+            euler.y = Random.Range(0f, 360f);
+            transform.eulerAngles = euler;
+            running = false;
+        }
+    }
+
+
+    private IEnumerator WanderAroundWalk()
+    {
+        if (running)
+        {
+            transform.Translate(Vector3.forward * roamSpeed * Time.deltaTime);
+            yield return new WaitForSeconds(roamDelay);
+        }
     }
 }
