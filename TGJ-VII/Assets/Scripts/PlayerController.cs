@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody rb;
     private Vector3 input, prevLoc;
     private float inputHor, inputVer;
+    private bool plantFlagInput;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +20,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         inputHor = Input.GetAxis("Horizontal");
         inputVer = Input.GetAxis("Vertical");
+        plantFlagInput = Input.GetButtonDown("PlantFlag");
+
         input = new Vector3(inputHor, 0f, inputVer);
         rb.MovePosition(transform.position + input * Time.deltaTime * MoveSpeed);
         if(input != Vector3.zero)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(input), 0.15F);
 
-        // transform.rotation = Quaternion.LookRotation(input, transform.up);
+
     }
 }
