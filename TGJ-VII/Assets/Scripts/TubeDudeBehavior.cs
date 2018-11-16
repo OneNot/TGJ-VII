@@ -15,7 +15,8 @@ public class TubeDudeBehavior : MonoBehaviour {
     float playerDist;
 
 
-
+    bool isFlagged = false;
+    bool spawnProtected = true;
     bool isWandering = false;
     bool isFollowing = true;
 
