@@ -166,6 +166,10 @@ Prefab:
       propertyPath: MoveSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1722133797555740, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
   m_IsPrefabAsset: 0
@@ -221,6 +225,10 @@ Prefab:
         type: 2}
       propertyPath: MoveSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722133797555740, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
@@ -448,6 +456,10 @@ Prefab:
       propertyPath: MoveSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1722133797555740, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
   m_IsPrefabAsset: 0
@@ -484,6 +496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 6
   LookSpeed: 10
+  FlagDeSpawnDelay: 3
+  FlagPrefab: {fileID: 1627701523360772, guid: 4593ea22de1735148b5eca179345cf42, type: 2}
 --- !u!54 &1410707497
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -757,6 +771,10 @@ Prefab:
         type: 2}
       propertyPath: MoveSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722133797555740, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b66abf22b950a0841b0aa653838056b7, type: 2}
