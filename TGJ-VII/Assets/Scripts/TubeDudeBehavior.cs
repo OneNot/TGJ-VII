@@ -10,10 +10,14 @@ public class TubeDudeBehavior : MonoBehaviour {
     public float roamSpeed;
     public float roamDelay;
     public float roamWalkDuration;
-    
+    public float dudeFollowRange;
+    public float dudeFollowCap;
+    float playerDist;
 
-    public bool isWandering = false;
-    public bool isFollowing = true;
+
+
+    bool isWandering = false;
+    bool isFollowing = true;
 
 	// Use this for initialization
 	void Start () {
@@ -22,8 +26,25 @@ public class TubeDudeBehavior : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        PlayerDistance();
         BehaviorCheck();
 	}
+
+    public void PlayerDistance()
+    {
+        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
+        if (playerDist < dudeFollowRange)
+        {
+            isFollowing = true;
+            isWandering = false;
+        }
+
+        else if (playerDist > dudeFollowRange)
+        {
+            isFollowing = false;
+            isWandering = true;
+        }
+    }
 
     public void BehaviorCheck() {
         //This serie of if -statements are to determine what the AI is doing and should do.
@@ -54,8 +75,20 @@ public class TubeDudeBehavior : MonoBehaviour {
 
     public void FollowMaster()
     {
+        
         transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+
+        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
+        if (playerDist < dudeFollowCap)
+        {
+            
+        }
+        else
+        {
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        }
+
+        
     }
 
     //Bool value used for timing coroutine properly
