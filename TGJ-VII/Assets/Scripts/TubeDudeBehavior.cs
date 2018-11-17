@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TubeDudeBehavior : MonoBehaviour {
+public class TubeDudeBehavior : MonoBehaviour
+{
 
     private Rigidbody rb;
     public float moveSpeed;
@@ -31,21 +32,24 @@ public class TubeDudeBehavior : MonoBehaviour {
     private float flagDist;
 
     // Use this for initialization
-    void Start() {
+    void Start()
+    {
         rb = transform.GetComponent<Rigidbody>();
         startPosition = transform.position;
 
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         flag = GameObject.FindGameObjectWithTag("Flag");
         controlledDude = GameObject.FindGameObjectWithTag("ControlledDude");
         BehaviorCheck();
     }
 
 
-    public void BehaviorCheck() {
+    public void BehaviorCheck()
+    {
 
         //------------
         //This block is to determine when to wander
@@ -90,27 +94,27 @@ public class TubeDudeBehavior : MonoBehaviour {
             if (dudeFollowRange > playerDist && isFlagged == false)
             {
                 isFollowing = true;
+                spawnProtected = false;
+                isControllable = true;
+                isWandering = false;
             }
 
             if (isFollowing == true && isFlagged == false)
             {
                 //Calls the function to follow player
                 FollowMaster();
-                spawnProtected = false;
             }
-        }
-        else
-        {
-            GameObject.FindGameObjectWithTag("SpawnController").GetComponent<ControlRespawn>().ControlSwap();
         }
         //-------------
     }
 
     public void FollowMaster()
     {
-        transform.LookAt(controlledDude.transform);
+        Vector3 posToLookAt = controlledDude.transform.position; //get pure position
+        posToLookAt.y = transform.position.y; //set pos y to own y, thus causing the difference to always be 0 and so no rotation is applied 
+        transform.LookAt(posToLookAt);
         playerDist = Vector3.Distance(controlledDude.transform.position, transform.position);
-        if (playerDist < dudeFollowRange)
+        if (playerDist < dudeFollowRange && playerDist > dudeFollowCap)
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }

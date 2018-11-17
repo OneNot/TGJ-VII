@@ -7,7 +7,12 @@ TagManager:
   - ControlledDude
   - TubeDude
   - Flag
+<<<<<<< HEAD
   - SpinnerBox
+=======
+  - DeadDude
+  - SpawnController
+>>>>>>> b24203598a31e7dc2a919ae6b8ff5b4831c99268
   layers:
   - Default
   - TransparentFX
