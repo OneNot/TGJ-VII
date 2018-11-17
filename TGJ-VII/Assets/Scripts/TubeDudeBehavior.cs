@@ -12,6 +12,7 @@ public class TubeDudeBehavior : MonoBehaviour {
     public float dudeFollowRange;
     public float dudeFollowCap;
     float playerDist;
+    private GameObject controlledDude;
 
     //Variables used for spawn protection
     float origoDist;
@@ -23,6 +24,9 @@ public class TubeDudeBehavior : MonoBehaviour {
     bool isWandering = false;
     bool isFollowing = true;
 
+    public float flagRange;
+    private GameObject flag;
+
 	// Use this for initialization
 	void Start () {
         rb = transform.GetComponent<Rigidbody>();
@@ -32,22 +36,40 @@ public class TubeDudeBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         PlayerDistance();
+        FlagCheck();
         BehaviorCheck();
-	}
+        flag = GameObject.FindGameObjectWithTag("Flag");
+
+    }
 
     public void PlayerDistance()
     {
-        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
-        if (playerDist < dudeFollowRange)
+        if (flag != null)
         {
-            isFollowing = true;
-            isWandering = false;
-        }
+            playerDist = Vector3.Distance(flag.transform.position, transform.position);
+            if (playerDist < dudeFollowRange)
+            {
+                isFollowing = true;
+                isWandering = false;
+            }
 
-        else if (playerDist > dudeFollowRange)
+            else if (playerDist > dudeFollowRange)
+            {
+                isFollowing = false;
+                isWandering = true;
+            }
+        }
+    }
+
+    public void FlagCheck()
+    {
+        if (flag != null)
         {
-            isFollowing = false;
-            isWandering = true;
+            float flagDist = Vector3.Distance(flag.transform.position, transform.position);
+            if (flagDist < flagRange)
+            {
+                isFlagged = true;
+            }
         }
     }
 
@@ -67,6 +89,7 @@ public class TubeDudeBehavior : MonoBehaviour {
             {
                 //Calls the function to follow player
                 FollowMaster();
+                spawnProtected = false;
             }
         }
         else if (isWandering == true)
@@ -78,7 +101,6 @@ public class TubeDudeBehavior : MonoBehaviour {
 
     public void FollowMaster()
     {
-        
         transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
 
         playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
@@ -88,10 +110,23 @@ public class TubeDudeBehavior : MonoBehaviour {
         }
         else
         {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            if (!isFlagged)
+            {
+                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                if (flag != null)
+                {
+                    transform.LookAt(flag.transform);
+                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    isFlagged = false;
+                }
+            }
         }
-
-        
     }
 
 

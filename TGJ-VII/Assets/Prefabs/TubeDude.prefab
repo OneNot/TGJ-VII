@@ -116,9 +116,10 @@ MonoBehaviour:
   rotSpeed: 1
   roamSpeed: 0.5
   roamDelay: 2
-  roamWalkDuration: 3
   dudeFollowRange: 10
   dudeFollowCap: 2
+  spawnArea: 1
+  flagRange: 0
 --- !u!136 &136754785775143446
 CapsuleCollider:
   m_ObjectHideFlags: 1
