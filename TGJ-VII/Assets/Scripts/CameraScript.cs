@@ -15,7 +15,7 @@ public class CameraScript : MonoBehaviour {
 	void Start () {
         following = GameObject.FindGameObjectWithTag("ControlledDude").transform;
         distance = transform.position - following.position;
-        transform.LookAt(following.position);
+        //transform.LookAt(following.position);
     }
 	
 	// Update is called once per frame
