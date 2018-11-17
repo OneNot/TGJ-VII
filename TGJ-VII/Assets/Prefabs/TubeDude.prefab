@@ -113,13 +113,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 4
-  rotSpeed: 1
   roamSpeed: 0.5
   roamDelay: 2
-  dudeFollowRange: 10
+  dudeFollowRange: 5
   dudeFollowCap: 2
   spawnArea: 1
-  flagRange: 5
+  inSuckerRange: 0
+  flagRange: 7
+  flagCap: 2
 --- !u!136 &136754785775143446
 CapsuleCollider:
   m_ObjectHideFlags: 1

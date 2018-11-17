@@ -6,13 +6,11 @@ public class TubeDudeBehavior : MonoBehaviour {
 
     private Rigidbody rb;
     public float moveSpeed = 1;
-    public float rotSpeed = 1;
     public float roamSpeed;
     public float roamDelay;
     public float dudeFollowRange;
     public float dudeFollowCap;
     float playerDist;
-    private GameObject controlledDude;
 
     //Variables used for spawn protection
     float origoDist;
@@ -98,10 +96,6 @@ public class TubeDudeBehavior : MonoBehaviour {
 
     public void FollowMaster()
     {
-        if (controlledDude == null)
-        {
-            //Insert respawn function later
-        }
         transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
         playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
         if (playerDist < dudeFollowRange)
