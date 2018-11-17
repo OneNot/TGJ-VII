@@ -20,7 +20,10 @@ public class CameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        transform.position = Vector3.Lerp(transform.position, following.position + distance * DistanceMultiplier, Time.deltaTime * MoveSpeed);
+        if (GameObject.FindGameObjectWithTag("ControlledDude") != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, following.position + distance * DistanceMultiplier, Time.deltaTime * MoveSpeed);
+        }
 	}
 
     public void ReSetFollowing(Transform _newFollowedTransform)

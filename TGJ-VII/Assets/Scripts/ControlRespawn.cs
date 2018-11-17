@@ -6,7 +6,8 @@ public class ControlRespawn : MonoBehaviour {
 
     private GameObject[] tubeDudet;
     public bool isControllable;
-    private bool searchDone;
+    private Vector3 spawnPosition;
+    public GameObject controllableDude;
     
     // Use this for initialization
 	void Start () {
@@ -15,22 +16,26 @@ public class ControlRespawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
-    void DeathDetect()
+    public void ControlSwap()
     {
         if (GameObject.FindGameObjectsWithTag("ControlledDude") == null)
         {
             tubeDudet = GameObject.FindGameObjectsWithTag("TubeDude");
 
-            do
+            foreach (GameObject tubeDude in tubeDudet)
             {
-                foreach (GameObject tubeDude in tubeDudet)
+                if (tubeDude.GetComponent<TubeDudeBehavior>().isControllable == true)
                 {
-                    
+                    spawnPosition = tubeDude.transform.position;
+                    Destroy(tubeDude);
+                    GameObject target = Instantiate(controllableDude, spawnPosition, Quaternion.Euler(Vector3.zero));
+                    Camera.main.GetComponent<CameraScript>().ReSetFollowing(target.transform);
+                    break;
                 }
-            } while (searchDone == false);
+            }
         }
     }
 }
