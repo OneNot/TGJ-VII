@@ -20,11 +20,12 @@ public class SuckerScript : MonoBehaviour {
 		
 	}
 
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("TubeDude"))
         {
-            Vector3 thisDude = other.transform.position;
+            Vector3 thisDude = other.gameObject.transform.position;
             float thisDudeDistance = Vector3.Distance(thisDude, transform.position);
 
             if (thisDudeDistance > closestDudeDistance || closestDudeDistance == null)
