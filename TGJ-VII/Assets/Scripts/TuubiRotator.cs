@@ -11,7 +11,7 @@ public class TuubiRotator : MonoBehaviour {
     public float TurnSpeed;
 
     private float lastCheckTime = 0f;
-    private Transform closestDudeTransform;
+    private Vector3 closestDudePos;
     private float? closestDudeDistance;
     private Vector3 prevClosestDudePos;
 
@@ -33,7 +33,8 @@ public class TuubiRotator : MonoBehaviour {
                 if (newDudeDistance < closestDudeDistance || closestDudeDistance == null)
                 {
                     closestDudeDistance = newDudeDistance;
-                    closestDudeTransform = o.transform;
+                    closestDudePos = o.transform.position;
+                    closestDudePos.y = transform.position.y; //basically indirectly contrains the rotation to only the y axel
                 }
             }
             closestDudeDistance = null; //needs to be cleaned for next time
@@ -41,9 +42,10 @@ public class TuubiRotator : MonoBehaviour {
         }
 
         //if we have values for current closest and previous closest, slerp move the pipe
-        if(prevClosestDudePos != null && closestDudeTransform != null)
-            transform.LookAt(Vector3.Slerp(prevClosestDudePos, closestDudeTransform.position, Time.deltaTime * TurnSpeed));
+        if(prevClosestDudePos != null && closestDudePos != null)
+            transform.LookAt(Vector3.Slerp(prevClosestDudePos, closestDudePos, Time.deltaTime * TurnSpeed));
 
-        prevClosestDudePos = closestDudeTransform.position; //update previous closest
+        if(closestDudePos != null)
+            prevClosestDudePos = closestDudePos; //update previous closest
 	}
 }
