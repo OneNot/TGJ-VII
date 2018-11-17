@@ -6,12 +6,14 @@ public class TuubiRotator : MonoBehaviour {
 
     public List<GameObject> DudesInRange;
 
-    [Tooltip("How many times a second to check")]
+    [Tooltip("How many times a second to check for closest dude")]
     public int ChecksPerSecond = 5;
+    public float TurnSpeed;
 
     private float lastCheckTime = 0f;
     private Transform closestDudeTransform;
     private float? closestDudeDistance;
+    private Vector3 prevClosestDudePos;
 
 	// Use this for initialization
 	void Start () {
@@ -34,16 +36,14 @@ public class TuubiRotator : MonoBehaviour {
                     closestDudeTransform = o.transform;
                 }
             }
-            //=== closest dude transform check END ===
-
-            transform.LookAt(closestDudeTransform); //Look at the closest dude
-
-            //clean the values for next time
-            closestDudeDistance = null;
-            closestDudeTransform = null;
+            closestDudeDistance = null; //needs to be cleaned for next time
+            //=== closest dude transform check END ===            
         }
 
+        //if we have values for current closest and previous closest, slerp move the pipe
+        if(prevClosestDudePos != null && closestDudeTransform != null)
+            transform.LookAt(Vector3.Slerp(prevClosestDudePos, closestDudeTransform.position, Time.deltaTime * TurnSpeed));
 
-		
+        prevClosestDudePos = closestDudeTransform.position; //update previous closest
 	}
 }
