@@ -23,12 +23,16 @@ public class TubeDudeBehavior : MonoBehaviour {
     bool isFlagged = false;
     bool isWandering = false;
     bool isFollowing = true;
+    public bool inSuckerRange;
 
     public float flagRange;
+    public float flagCap;
+    //bool flagTooClose = false;
     private GameObject flag;
+    private float flagDist;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         rb = transform.GetComponent<Rigidbody>();
         startPosition = transform.position;
     }
@@ -88,7 +92,7 @@ public class TubeDudeBehavior : MonoBehaviour {
             else if (isFollowing == true)
             {
                 //Calls the function to follow player
-                FollowMaster();
+                FollowTarget();
                 spawnProtected = false;
             }
         }
@@ -99,32 +103,43 @@ public class TubeDudeBehavior : MonoBehaviour {
         }
     }
 
-    public void FollowMaster()
+    public void FollowTarget()
     {
-        transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
-
-        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
-        if (playerDist < dudeFollowCap)
+        if (flag != null)
         {
-            
+            flagDist = Vector3.Distance(flag.transform.position, transform.position);
+            if (!isFlagged)
+            {
+                transform.LookAt(flag.transform);
+                if (flagRange > flagDist && flagCap < flagDist)
+                {
+                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+                }
+            }
         }
         else
         {
-            if (!isFlagged)
+            transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
+            playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
+            if (playerDist > dudeFollowCap)
             {
                 transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
             }
-            else
+        }
+    }
+
+    public void FollowFlag()
+    {
+        if (flag != null)
+        {
+            flagDist = Vector3.Distance(flag.transform.position, transform.position);
+
+        }
+        else
+        {
+            if (flag != null && flagCap < flagDist)
             {
-                if (flag != null)
-                {
-                    transform.LookAt(flag.transform);
-                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    isFlagged = false;
-                }
+                Debug.Log("pysyn");
             }
         }
     }
