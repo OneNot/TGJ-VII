@@ -16,7 +16,7 @@ public class TubeDudeBehavior : MonoBehaviour {
 
     //Variables used for spawn protection
     float origoDist;
-    public float spawnArea; 
+    public float spawnArea;
     bool spawnProtected = true;
     Vector3 startPosition;
 
@@ -27,46 +27,39 @@ public class TubeDudeBehavior : MonoBehaviour {
 
     public float flagRange;
     public float flagCap;
-    //bool flagTooClose = false;
     private GameObject flag;
     private float flagDist;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         rb = transform.GetComponent<Rigidbody>();
         startPosition = transform.position;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        PlayerDistance();
-        FlagCheck();
+
+    // Update is called once per frame
+    void Update() {
         BehaviorCheck();
         flag = GameObject.FindGameObjectWithTag("Flag");
-
     }
 
-    public void PlayerDistance()
-    {
-        if (flag != null)
+
+    public void BehaviorCheck() {
+
+        //------------
+        //This block is to determine when to wander
+        if (isWandering == true && isFlagged == false && isFollowing == false)
         {
-            playerDist = Vector3.Distance(flag.transform.position, transform.position);
-            if (playerDist < dudeFollowRange)
-            {
-                isFollowing = true;
-                isWandering = false;
-            }
-
-            else if (playerDist > dudeFollowRange)
-            {
-                isFollowing = false;
-                isWandering = true;
-            }
+            //Calls the function to wander around
+            WanderAround();
         }
-    }
+        else if (isWandering == false)
+        {
+            //Makes the dudes wander if there's nothing else to do
+            isWandering = true;
+        }
+        //-------------
 
-    public void FlagCheck()
-    {
+        //-------------
         if (flag != null)
         {
             float flagDist = Vector3.Distance(flag.transform.position, transform.position);
@@ -74,57 +67,50 @@ public class TubeDudeBehavior : MonoBehaviour {
             {
                 isFlagged = true;
             }
-        }
-    }
-
-    public void BehaviorCheck() {
-        //This serie of if -statements are to determine what the AI is doing and should do.
-        //If the AI is doing nothing, start wondering
-        //If the AI is following, execute following code
-        //If it's wandering, execute wandering code
-        if (isWandering == false)
-        {
-            if (isFollowing == false)
+            else
             {
-                isWandering = true;
-            }
-
-            else if (isFollowing == true)
-            {
-                //Calls the function to follow player
-                FollowTarget();
-                spawnProtected = false;
+                isFlagged = false;
             }
         }
-        else if (isWandering == true)
+
+        //This part determines to follow the flag, if it's in distance
+        if (isFlagged == true)
         {
-            //Calls the function to wander around
-            WanderAround();
+            FollowFlag();
         }
+        //-------------
+
+        //-------------
+        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
+        if (dudeFollowRange > playerDist && isFlagged == false)
+        {
+            isFollowing = true;
+        }
+
+        if (isFollowing == true && isFlagged == false)
+        {
+            //Calls the function to follow player
+            FollowMaster();
+            spawnProtected = false;
+        }
+        //-------------
     }
 
-    public void FollowTarget()
+    public void FollowMaster()
     {
-        if (flag != null)
+        if (controlledDude == null)
         {
-            flagDist = Vector3.Distance(flag.transform.position, transform.position);
-            if (!isFlagged)
-            {
-                transform.LookAt(flag.transform);
-                if (flagRange > flagDist && flagCap < flagDist)
-                {
-                    transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-                }
-            }
+            //Insert respawn function later
+        }
+        transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
+        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
+        if (playerDist < dudeFollowRange)
+        {
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
         else
         {
-            transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
-            playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
-            if (playerDist > dudeFollowCap)
-            {
-                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
-            }
+            isFollowing = false;
         }
     }
 
@@ -133,17 +119,17 @@ public class TubeDudeBehavior : MonoBehaviour {
         if (flag != null)
         {
             flagDist = Vector3.Distance(flag.transform.position, transform.position);
-
+            transform.LookAt(flag.transform);
+            if (flagDist > flagCap)
+            {
+                transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            }
         }
         else
         {
-            if (flag != null && flagCap < flagDist)
-            {
-                Debug.Log("pysyn");
-            }
+            isFlagged = false;
         }
     }
-
 
     public void WanderAround()
     {
