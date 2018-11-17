@@ -22,6 +22,7 @@ public class TubeDudeBehavior : MonoBehaviour {
     bool isWandering = false;
     bool isFollowing = true;
     public bool inSuckerRange;
+    public bool isControllable;
 
     public float flagRange;
     public float flagCap;
