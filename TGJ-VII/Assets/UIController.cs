@@ -14,10 +14,10 @@ public class UIController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-
+        PlayerPrefs.DeleteAll();
 
         targetSelectable = GameObject.Find("Mainmenu_defaultselectable");
-
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
 	}
 	
 	// Update is called once per frame
@@ -77,11 +77,13 @@ public class UIController : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetButton("Submit"))
         {
             if(targetSelectable.GetComponent<Button>() != null)
             targetSelectable.GetComponent<Button>().onClick.Invoke();
         }
+
+        
 
     }
 
