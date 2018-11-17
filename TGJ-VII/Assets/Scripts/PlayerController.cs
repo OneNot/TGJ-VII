@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         inputHor = Input.GetAxis("Horizontal");
         inputVer = Input.GetAxis("Vertical");
+        
         plantFlagInput = Input.GetButtonDown("PlantFlag");
 
         if(plantFlagInput && !flagPlanted)
@@ -37,10 +38,14 @@ public class PlayerController : MonoBehaviour {
 
 
         input = new Vector3(inputHor, 0f, inputVer);
-        rb.MovePosition(transform.position + input * Time.deltaTime * MoveSpeed);
         if(input != Vector3.zero)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(input), 0.15F);
 
 
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(transform.position + input * Time.deltaTime * MoveSpeed);
     }
 }
