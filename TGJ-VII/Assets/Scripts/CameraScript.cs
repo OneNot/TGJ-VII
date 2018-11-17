@@ -28,7 +28,6 @@ public class CameraScript : MonoBehaviour {
 
     public void ReSetFollowing(Transform _newFollowedTransform)
     {
-        print("ok");
         following = _newFollowedTransform;
     }
 }
