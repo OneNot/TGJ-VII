@@ -16,7 +16,10 @@ public class Menuslider : MonoBehaviour {
     // Use this for initialization
     void Start () {
         if (adaptPrefValue != "")
-            gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat(adaptPrefValue,prefDefaultValue) * adaptPrefValueMultiplier;
+        {
+            gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat(adaptPrefValue, prefDefaultValue) * adaptPrefValueMultiplier;
+            SliderUpdateText();
+        }
 	}
 	
 	// Update is called once per frame
