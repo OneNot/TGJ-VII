@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         inputHor = Input.GetAxis("Horizontal");
         inputVer = Input.GetAxis("Vertical");
+        
         plantFlagInput = Input.GetButtonDown("PlantFlag");
 
         if(plantFlagInput && !flagPlanted)
