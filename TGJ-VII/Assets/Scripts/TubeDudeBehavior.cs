@@ -5,12 +5,13 @@ using UnityEngine;
 public class TubeDudeBehavior : MonoBehaviour {
 
     private Rigidbody rb;
-    public float moveSpeed = 1;
+    public float moveSpeed;
     public float roamSpeed;
     public float roamDelay;
     public float dudeFollowRange;
     public float dudeFollowCap;
     float playerDist;
+    private GameObject controlledDude;
 
     //Variables used for spawn protection
     float origoDist;
@@ -33,12 +34,14 @@ public class TubeDudeBehavior : MonoBehaviour {
     void Start() {
         rb = transform.GetComponent<Rigidbody>();
         startPosition = transform.position;
+
     }
 
     // Update is called once per frame
     void Update() {
-        BehaviorCheck();
         flag = GameObject.FindGameObjectWithTag("Flag");
+        controlledDude = GameObject.FindGameObjectWithTag("ControlledDude");
+        BehaviorCheck();
     }
 
 
@@ -80,25 +83,33 @@ public class TubeDudeBehavior : MonoBehaviour {
         //-------------
 
         //-------------
-        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
-        if (dudeFollowRange > playerDist && isFlagged == false)
+        if (controlledDude != null)
         {
-            isFollowing = true;
-        }
+            playerDist = Vector3.Distance(controlledDude.transform.position, transform.position);
 
-        if (isFollowing == true && isFlagged == false)
+            if (dudeFollowRange > playerDist && isFlagged == false)
+            {
+                isFollowing = true;
+            }
+
+            if (isFollowing == true && isFlagged == false)
+            {
+                //Calls the function to follow player
+                FollowMaster();
+                spawnProtected = false;
+            }
+        }
+        else
         {
-            //Calls the function to follow player
-            FollowMaster();
-            spawnProtected = false;
+            GameObject.FindGameObjectWithTag("SpawnController").GetComponent<ControlRespawn>().ControlSwap();
         }
         //-------------
     }
 
     public void FollowMaster()
     {
-        transform.LookAt(GameObject.FindGameObjectWithTag("ControlledDude").transform);
-        playerDist = Vector3.Distance(GameObject.FindGameObjectWithTag("ControlledDude").transform.position, transform.position);
+        transform.LookAt(controlledDude.transform);
+        playerDist = Vector3.Distance(controlledDude.transform.position, transform.position);
         if (playerDist < dudeFollowRange)
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
