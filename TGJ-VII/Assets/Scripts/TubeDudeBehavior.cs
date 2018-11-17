@@ -90,16 +90,18 @@ public class TubeDudeBehavior : MonoBehaviour {
             if (dudeFollowRange > playerDist && isFlagged == false)
             {
                 isFollowing = true;
-                spawnProtected = false;
-                isControllable = true;
-                isWandering = false;
             }
 
             if (isFollowing == true && isFlagged == false)
             {
                 //Calls the function to follow player
                 FollowMaster();
+                spawnProtected = false;
             }
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("SpawnController").GetComponent<ControlRespawn>().ControlSwap();
         }
         //-------------
     }
@@ -108,7 +110,7 @@ public class TubeDudeBehavior : MonoBehaviour {
     {
         transform.LookAt(controlledDude.transform);
         playerDist = Vector3.Distance(controlledDude.transform.position, transform.position);
-        if (playerDist < dudeFollowRange && playerDist > dudeFollowCap)
+        if (playerDist < dudeFollowRange)
         {
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }

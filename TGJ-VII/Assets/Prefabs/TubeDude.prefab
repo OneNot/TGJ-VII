@@ -119,7 +119,6 @@ MonoBehaviour:
   dudeFollowCap: 2
   spawnArea: 1
   inSuckerRange: 0
-  isControllable: 0
   flagRange: 7
   flagCap: 2
 --- !u!136 &136754785775143446

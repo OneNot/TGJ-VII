@@ -16,8 +16,6 @@ public class KillingFloor : MonoBehaviour {
         else if(other.gameObject.CompareTag("ControlledDude"))
         {
             other.gameObject.tag = "DeadDude";
-            other.gameObject.GetComponent<PlayerController>().enabled = false;
-            GameObject.FindGameObjectWithTag("SpawnController").GetComponent<ControlRespawn>().ControlSwap();
         }
     }
 }

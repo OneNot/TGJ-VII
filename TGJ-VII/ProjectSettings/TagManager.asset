@@ -7,8 +7,6 @@ TagManager:
   - ControlledDude
   - TubeDude
   - Flag
-  - SpawnController
-  - DeadDude
   layers:
   - Default
   - TransparentFX
