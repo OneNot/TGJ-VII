@@ -180,4 +180,9 @@ public class TubeDudeBehavior : MonoBehaviour {
             yield return new WaitForSeconds(roamDelay);
         }
     }
+
+    public void ActivateRagdoll()
+    {
+        //dunno how w'll do this yet
+    }
 }
