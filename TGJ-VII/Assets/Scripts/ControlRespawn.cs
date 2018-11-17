@@ -21,14 +21,18 @@ public class ControlRespawn : MonoBehaviour {
 
     public void ControlSwap()
     {
-        if (GameObject.FindGameObjectsWithTag("ControlledDude") == null)
+        Debug.Log("Success1");
+        if (GameObject.FindGameObjectWithTag("ControlledDude") == null)
         {
+            Debug.Log("Success2");
             tubeDudet = GameObject.FindGameObjectsWithTag("TubeDude");
 
             foreach (GameObject tubeDude in tubeDudet)
             {
+                Debug.Log("Success3");
                 if (tubeDude.GetComponent<TubeDudeBehavior>().isControllable == true)
                 {
+                    Debug.Log("Success4");
                     spawnPosition = tubeDude.transform.position;
                     Destroy(tubeDude);
                     GameObject target = Instantiate(controllableDude, spawnPosition, Quaternion.Euler(Vector3.zero));

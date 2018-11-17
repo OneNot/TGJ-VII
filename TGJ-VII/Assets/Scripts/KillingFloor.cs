@@ -9,13 +9,15 @@ public class KillingFloor : MonoBehaviour {
         if (other.gameObject.CompareTag("TubeDude"))
         {
             TubeDudeBehavior brainToKill = other.gameObject.GetComponent<TubeDudeBehavior>();
-            brainToKill.ActivateRagdoll();
+            //brainToKill.ActivateRagdoll();
             brainToKill.gameObject.tag = "DeadDude";
             brainToKill.enabled = false; //lobotomize
         }
         else if(other.gameObject.CompareTag("ControlledDude"))
         {
             other.gameObject.tag = "DeadDude";
+            GameObject.FindGameObjectWithTag("SpawnController").GetComponent<ControlRespawn>().ControlSwap();
+            other.gameObject.GetComponent<PlayerController>().enabled = false;
         }
     }
 }
