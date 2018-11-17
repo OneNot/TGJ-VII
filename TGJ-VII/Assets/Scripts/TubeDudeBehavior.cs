@@ -110,7 +110,9 @@ public class TubeDudeBehavior : MonoBehaviour
 
     public void FollowMaster()
     {
-        transform.LookAt(controlledDude.transform);
+        Vector3 posToLookAt = controlledDude.transform.position; //get pure position
+        posToLookAt.y = transform.position.y; //set pos y to own y, thus causing the difference to always be 0 and so no rotation is applied 
+        transform.LookAt(posToLookAt);
         playerDist = Vector3.Distance(controlledDude.transform.position, transform.position);
         if (playerDist < dudeFollowRange && playerDist > dudeFollowCap)
         {
