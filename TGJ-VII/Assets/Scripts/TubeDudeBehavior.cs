@@ -9,20 +9,24 @@ public class TubeDudeBehavior : MonoBehaviour {
     public float rotSpeed = 1;
     public float roamSpeed;
     public float roamDelay;
-    public float roamWalkDuration;
     public float dudeFollowRange;
     public float dudeFollowCap;
     float playerDist;
 
+    //Variables used for spawn protection
+    float origoDist;
+    public float spawnArea; 
+    bool spawnProtected = true;
+    Vector3 startPosition;
 
     bool isFlagged = false;
-    bool spawnProtected = true;
     bool isWandering = false;
     bool isFollowing = true;
 
 	// Use this for initialization
 	void Start () {
         rb = transform.GetComponent<Rigidbody>();
+        startPosition = transform.position;
     }
 	
 	// Update is called once per frame
@@ -68,9 +72,7 @@ public class TubeDudeBehavior : MonoBehaviour {
         else if (isWandering == true)
         {
             //Calls the function to wander around
-            StartCoroutine(WanderAroundRotate());
-            StartCoroutine(WanderAroundWalk());
-            
+            WanderAround();
         }
     }
 
@@ -90,6 +92,30 @@ public class TubeDudeBehavior : MonoBehaviour {
         }
 
         
+    }
+
+
+    public void WanderAround()
+    {
+        if (spawnProtected)
+        {
+            origoDist = Vector3.Distance(startPosition, transform.position);
+            if (origoDist > spawnArea)
+            {
+                transform.LookAt(startPosition);
+                transform.Translate(Vector3.forward * roamSpeed * Time.deltaTime);
+            }
+            else
+            {
+                StartCoroutine(WanderAroundRotate());
+                StartCoroutine(WanderAroundWalk());
+            }
+        }
+        else
+        {
+            StartCoroutine(WanderAroundRotate());
+            StartCoroutine(WanderAroundWalk());
+        }
     }
 
     //Bool value used for timing coroutine properly
