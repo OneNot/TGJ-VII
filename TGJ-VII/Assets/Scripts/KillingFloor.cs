@@ -11,6 +11,7 @@ public class KillingFloor : MonoBehaviour {
             TubeDudeBehavior brainToKill = other.gameObject.GetComponent<TubeDudeBehavior>();
             //brainToKill.ActivateRagdoll();
             brainToKill.gameObject.tag = "DeadDude";
+            brainToKill.StopEffect();
             brainToKill.enabled = false; //lobotomize
         }
         else if(other.gameObject.CompareTag("ControlledDude"))

@@ -14,7 +14,6 @@ public class TubeDudeBehavior : MonoBehaviour
     float playerDist;
     private GameObject controlledDude;
     private ParticleSystem.EmissionModule parSysEm;
-    private bool isEmmiting;
 
     //Variables used for spawn protection
     float origoDist;
@@ -164,6 +163,13 @@ public class TubeDudeBehavior : MonoBehaviour
             parSysEm.enabled = false; //stop emmiting particles if start wandering
         }
 
+        //when wandering set "is controllable" to false if it isn't already =====
+        if(isControllable)
+        {
+            isControllable = false;
+        }
+        //=======================================================================
+
         if (spawnProtected)
         {
             origoDist = Vector3.Distance(startPosition, transform.position);
@@ -210,6 +216,11 @@ public class TubeDudeBehavior : MonoBehaviour
             transform.Translate(Vector3.forward * roamSpeed * Time.deltaTime);
             yield return new WaitForSeconds(roamDelay);
         }
+    }
+
+    public void StopEffect()
+    {
+        GetComponentInChildren<ParticleSystem>().Stop();
     }
 
     public void ActivateRagdoll()

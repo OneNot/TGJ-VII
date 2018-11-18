@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Leikkujri : MonoBehaviour {
 
+    public GameObject BloodyMessPrefabRef;
+
     public float speed;
     public float spinningSpeed;
 
@@ -12,7 +14,7 @@ public class Leikkujri : MonoBehaviour {
 	}
 	
 	void Update () {
-        transform.Rotate(Vector3.right * spinningSpeed * speed * Time.deltaTime, Space.Self); //Terän pyörittäminen
+        transform.Rotate(Vector3.right * spinningSpeed * 100 * Time.deltaTime, Space.Self); //Terän pyörittäminen
         transform.Translate(transform.parent.transform.forward * speed * Time.deltaTime, Space.World); //terän liikuttaminien
     }
 
@@ -27,13 +29,21 @@ public class Leikkujri : MonoBehaviour {
             TubeDudeBehavior brainToKill = other.gameObject.GetComponent<TubeDudeBehavior>();
             //brainToKill.ActivateRagdoll();
             brainToKill.gameObject.tag = "DeadDude";
-            brainToKill.enabled = false; //lobotomize
+            brainToKill.StopEffect();
+            Instantiate(BloodyMessPrefabRef, other.transform.position, Quaternion.Euler(Vector3.zero)); //spawns a bloody explosion (handles removal itself afterwards)
+            Destroy(other.gameObject);
+            //brainToKill.enabled = false; //lobotomize
         }
         else if (other.gameObject.CompareTag("ControlledDude"))
         {
+            print("ded");
+            PlayerController brainToKill = other.gameObject.GetComponent<PlayerController>();
             other.gameObject.tag = "DeadDude";
             GameObject.FindGameObjectWithTag("SpawnController").GetComponent<ControlRespawn>().ControlSwap();
-            other.gameObject.GetComponent<PlayerController>().enabled = false;
+            brainToKill.StopEffect();
+            //brainToKill.enabled = false;
+            Instantiate(BloodyMessPrefabRef, other.transform.position, Quaternion.Euler(Vector3.zero)); //spawns a bloody explosion (handles removal itself afterwards)
+            Destroy(other.gameObject);
         }
 
     }
