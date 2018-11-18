@@ -804,6 +804,7 @@ MonoBehaviour:
   adaptPrefValueMultiplier: 1
   setPrefValue: BGMVolume
   prefDefaultValue: 50
+  divideBy: 100
 --- !u!114 &55689355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,6 +3073,7 @@ MonoBehaviour:
   adaptPrefValueMultiplier: 1
   setPrefValue: MasterVolume
   prefDefaultValue: 50
+  divideBy: 1
 --- !u!114 &368934520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6651,11 +6653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - Zen Temppeli
-  - Paskala
-  - Kusisuo
-  - Bugien Valtakunta
-  - HegenScene
+  - Level1
   selectedOptionInt: 0
   selectedOption: 
 --- !u!1 &1151344815
@@ -7929,6 +7927,7 @@ MonoBehaviour:
   adaptPrefValueMultiplier: 1
   setPrefValue: SFXVolume
   prefDefaultValue: 50
+  divideBy: 1
 --- !u!114 &1397487533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9611,8 +9610,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credits: Toni Hannula, Heikki Raussi, Atte J\xE4ntti, Topi Insertsukunimi,
-    Janne Veppling"
+  m_Text: "Credits: Toni Hannula, Heikki Raussi, Atte J\xE4ntti, Topi Turunen, Janne
+    Veppling"
 --- !u!222 &1728467673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9893,6 +9892,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1755319281}
+  - component: {fileID: 1755319286}
   - component: {fileID: 1755319282}
   - component: {fileID: 1755319283}
   - component: {fileID: 1755319284}
@@ -10020,6 +10020,18 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 0}
+--- !u!114 &1755319286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755319280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41648dcc4149fcf479002eb28446bc27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  juttu: {fileID: 1792785996866706, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
 --- !u!1 &1757874058
 GameObject:
   m_ObjectHideFlags: 0
@@ -10396,7 +10408,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1851863292}
   - component: {fileID: 1851863291}
-  - component: {fileID: 1851863290}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10404,13 +10415,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1851863290
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1851863289}
-  m_Enabled: 1
 --- !u!20 &1851863291
 Camera:
   m_ObjectHideFlags: 0

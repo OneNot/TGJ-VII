@@ -30,7 +30,7 @@ public class UIController : MonoBehaviour
     void Start () {
     
         targetSelectable = GameObject.Find("Mainmenu_defaultselectable");
-        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume") / 100;
 	}
 
     void Update()
