@@ -12,12 +12,13 @@ public class Menuslider : MonoBehaviour {
     public float adaptPrefValueMultiplier = 1;
     public string setPrefValue;
     public float prefDefaultValue;
+    public int divideBy = 1;
 
     // Use this for initialization
     void Start () {
         if (adaptPrefValue != "")
         {
-            gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat(adaptPrefValue, prefDefaultValue) * adaptPrefValueMultiplier;
+            gameObject.GetComponent<Slider>().value = PlayerPrefs.GetFloat(adaptPrefValue, prefDefaultValue) * adaptPrefValueMultiplier * divideBy;
             SliderUpdateText();
         }
 	}
@@ -41,6 +42,6 @@ public class Menuslider : MonoBehaviour {
 
     public void SetPrefValue()
     {
-        PlayerPrefs.SetFloat(setPrefValue, gameObject.GetComponent<Slider>().value);
+        PlayerPrefs.SetFloat(setPrefValue, gameObject.GetComponent<Slider>().value / divideBy);
     }
 }

@@ -173,8 +173,9 @@ public class Menubutton : MonoBehaviour {
     public void QuitToMenu()
     {
         //Asetetaan scoret, verrataan high scoreen
-        GameObject.Find("ScoreController").GetComponent<ScoreController>().SubmitScore();
-
+        //GameObject.Find("ScoreController").GetComponent<ScoreController>().SubmitScore();
+        
+        
         Destroy(GameObject.Find("Settings"));
         Destroy(GameObject.Find("Mainmenu"));
         Destroy(GameObject.Find("UIController"));
@@ -183,6 +184,8 @@ public class Menubutton : MonoBehaviour {
         Destroy(GameObject.Find("EndLevelScreen"));
         Destroy(GameObject.Find("ScoreController"));
         Destroy(GameObject.Find("HighScores"));
+        
+
         SceneManager.LoadScene("Mainmenu");
     }
 
