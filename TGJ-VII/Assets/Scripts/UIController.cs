@@ -16,6 +16,8 @@ public class UIController : MonoBehaviour
     bool verticalAxisAvailable;
     bool horizontalAxisAvailable;
 
+    public bool textFieldActive;
+
     public GameObject targetSelectable;
 
     private void Awake()
@@ -61,7 +63,7 @@ public class UIController : MonoBehaviour
 
 
 
-        if (Input.GetAxisRaw("Vertical") == -1 && verticalAxisAvailable == true)
+        if (Input.GetAxisRaw("Vertical") == -1 && verticalAxisAvailable == true && textFieldActive == false)
         {
             verticalAxisAvailable = false;
 
@@ -76,7 +78,7 @@ public class UIController : MonoBehaviour
 
         }
 
-        if (Input.GetAxisRaw("Vertical") == 1 && verticalAxisAvailable == true)
+        if (Input.GetAxisRaw("Vertical") == 1 && verticalAxisAvailable == true && textFieldActive == false)
         {
             verticalAxisAvailable = false;
 
@@ -91,7 +93,7 @@ public class UIController : MonoBehaviour
 
         }
 
-        if (Input.GetAxisRaw("Horizontal") == -1)
+        if (Input.GetAxisRaw("Horizontal") == -1 && textFieldActive == false)
         {
             if (targetSelectable != null)
             {
@@ -118,7 +120,7 @@ public class UIController : MonoBehaviour
 
         }
 
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        if (Input.GetAxisRaw("Horizontal") == 1 && textFieldActive == false)
         {
 
             if (targetSelectable != null)

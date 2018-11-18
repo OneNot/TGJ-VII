@@ -22,6 +22,9 @@ public class Menubutton : MonoBehaviour {
     public string overrideTextObject;
     public string overrideTextMessage;
 
+    public string overrideTextObject2;
+    public string overrideTextMessage2;
+
     // Vastaavan niminen paneeli, jonka nappula avaa
     public string openPanel;
     // Painike joka uudessa valikossa on aktiivinen
@@ -39,6 +42,9 @@ public class Menubutton : MonoBehaviour {
     public string ButtonToFallBack;
     public string SetPaneIfNotMainMenu;
     public string SetPanelIfNotMainMenu_DS;
+
+    public string enableOpacity;
+    public string disableOpacity;
 
 
     // Use this for initialization
@@ -77,6 +83,11 @@ public class Menubutton : MonoBehaviour {
         if (overrideTextObject != "")
         {
             GameObject.Find(overrideTextObject).GetComponent<Text>().text = overrideTextMessage;
+        }
+
+        if (overrideTextObject2 != "")
+        {
+            GameObject.Find(overrideTextObject2).GetComponent<Text>().text = overrideTextMessage2;
         }
 
 
@@ -223,5 +234,14 @@ public class Menubutton : MonoBehaviour {
         GameObject.Find("ScoreController").GetComponent<ScoreController>().SubmitScore();
     }
 
+    public void EnableOpacity()
+    {
+        
+    }
+
+    public void DisableOpacity()
+    {
+
+    }
 
 }
