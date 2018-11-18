@@ -69,7 +69,7 @@ public class ScoreController : MonoBehaviour {
             tempScore5 = PlayerPrefs.GetInt("Top5Score");
 
 
-            if (currentScore > PlayerPrefs.GetInt("Top1Score", 0) && scoresChecked == false)
+            if (currentScore >= PlayerPrefs.GetInt("Top1Score", 0) && scoresChecked == false)
             {
                 PlayerPrefs.SetString("Top2Scorer", tempScorer1);
                 PlayerPrefs.SetString("Top3Scorer", tempScorer2);
@@ -88,7 +88,7 @@ public class ScoreController : MonoBehaviour {
                 scoresChecked = true;
             }
 
-            if (currentScore > PlayerPrefs.GetInt("Top2Score", 0) && scoresChecked == false)
+            if (currentScore >= PlayerPrefs.GetInt("Top2Score", 0) && scoresChecked == false)
             {
 
 
@@ -107,7 +107,7 @@ public class ScoreController : MonoBehaviour {
                 scoresChecked = true;
             }
 
-            if (currentScore > PlayerPrefs.GetInt("Top3Score", 0) && scoresChecked == false)
+            if (currentScore >= PlayerPrefs.GetInt("Top3Score", 0) && scoresChecked == false)
             {
 
                 PlayerPrefs.SetString("Top4Scorer", tempScorer3);
@@ -124,7 +124,7 @@ public class ScoreController : MonoBehaviour {
                 scoresChecked = true;
             }
 
-            if (currentScore > PlayerPrefs.GetInt("Top4Score", 0) && scoresChecked == false)
+            if (currentScore >= PlayerPrefs.GetInt("Top4Score", 0) && scoresChecked == false)
             {
 
                 PlayerPrefs.SetString("Top5Scorer", tempScorer4);
@@ -138,7 +138,7 @@ public class ScoreController : MonoBehaviour {
                 scoresChecked = true;
             }
 
-            if (currentScore > PlayerPrefs.GetInt("Top5Score", 0) && scoresChecked == false)
+            if (currentScore >= PlayerPrefs.GetInt("Top5Score", 0) && scoresChecked == false)
             {
                 PlayerPrefs.SetInt("Top5Score", currentScore);
                 PlayerPrefs.SetString("Top5Scorer", playerName);
