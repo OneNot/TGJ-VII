@@ -37,8 +37,8 @@ public class TubeDudeBehavior : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody>();
         startPosition = transform.position;
-        //parSysEm = GetComponentInChildren<ParticleSystem>().emission;
-        //parSysEm.enabled = false;
+        parSysEm = GetComponentInChildren<ParticleSystem>().emission;
+        parSysEm.enabled = false;
     }
 
     // Update is called once per frame
@@ -75,12 +75,10 @@ public class TubeDudeBehavior : MonoBehaviour
                 isFlagged = true;
 
                 //if not currently emmiting, start
-                /*
                 if(!parSysEm.enabled)
                 {
                     parSysEm.enabled = true;
                 }
-                */
             }
             else
             {
@@ -108,12 +106,10 @@ public class TubeDudeBehavior : MonoBehaviour
                 isWandering = false;
 
                 //if not currently emmiting, start
-                /*
                 if (!parSysEm.enabled)
                 {
                     parSysEm.enabled = true;
                 }
-                */
             }
 
             if (isFollowing == true && isFlagged == false)
@@ -160,7 +156,7 @@ public class TubeDudeBehavior : MonoBehaviour
 
     public void WanderAround()
     {
-        /*
+
         //if currently emmiting, stop
         if (parSysEm.enabled)
         {
@@ -172,7 +168,6 @@ public class TubeDudeBehavior : MonoBehaviour
         {
             isControllable = false;
         }
-        */
         //=======================================================================
 
         if (spawnProtected)

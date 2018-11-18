@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 114213202194623316}
   - component: {fileID: 136242816443459348}
   m_Layer: 0
-  m_Name: TubeDudeFINALv2
+  m_Name: ControlledTubeDude
   m_TagString: ControlledDude
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

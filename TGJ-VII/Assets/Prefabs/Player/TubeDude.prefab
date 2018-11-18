@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 136747382277229998}
   - component: {fileID: 114243665175308338}
   m_Layer: 0
-  m_Name: TubeDudeFINALv2_enemy
+  m_Name: TubeDude
   m_TagString: TubeDude
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
