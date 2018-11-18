@@ -804,6 +804,7 @@ MonoBehaviour:
   adaptPrefValueMultiplier: 1
   setPrefValue: BGMVolume
   prefDefaultValue: 50
+  divideBy: 100
 --- !u!114 &55689355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3072,6 +3073,7 @@ MonoBehaviour:
   adaptPrefValueMultiplier: 1
   setPrefValue: MasterVolume
   prefDefaultValue: 50
+  divideBy: 1
 --- !u!114 &368934520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5301,6 +5303,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 882081614}
   m_CullTransparentMesh: 0
+--- !u!1001 &939107102
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4167997187378672, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bba2895a5b81bf646bff76cca90de7f6, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &950026719
 GameObject:
   m_ObjectHideFlags: 0
@@ -6651,11 +6695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   options:
-  - Zen Temppeli
-  - Paskala
-  - Kusisuo
-  - Bugien Valtakunta
-  - HegenScene
+  - Level1
   selectedOptionInt: 0
   selectedOption: 
 --- !u!1 &1151344815
@@ -7929,6 +7969,7 @@ MonoBehaviour:
   adaptPrefValueMultiplier: 1
   setPrefValue: SFXVolume
   prefDefaultValue: 50
+  divideBy: 1
 --- !u!114 &1397487533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9611,8 +9652,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Credits: Toni Hannula, Heikki Raussi, Atte J\xE4ntti, Topi Insertsukunimi,
-    Janne Veppling"
+  m_Text: "Credits: Toni Hannula, Heikki Raussi, Atte J\xE4ntti, Topi Turunen, Janne
+    Veppling"
 --- !u!222 &1728467673
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10396,7 +10437,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1851863292}
   - component: {fileID: 1851863291}
-  - component: {fileID: 1851863290}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -10404,13 +10444,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1851863290
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1851863289}
-  m_Enabled: 1
 --- !u!20 &1851863291
 Camera:
   m_ObjectHideFlags: 0
