@@ -17,7 +17,7 @@ public class ScoreElements : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (scoreController.GetComponent<ScoreController>().currentScore > PlayerPrefs.GetInt("Top5Score"))
+        if (scoreController.GetComponent<ScoreController>().currentScore >= PlayerPrefs.GetInt("Top5Score"))
         {
             UIController.GetComponent<UIController>().ActivateButton(gameObject.name);
         }
