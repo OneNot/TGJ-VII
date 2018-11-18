@@ -30,12 +30,21 @@ public class UIController : MonoBehaviour
         targetSelectable = GameObject.Find("Mainmenu_defaultselectable");
         AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
 	}
-	
-	// Update is called once per frame
-	void LateUpdate ()
+
+    void Update()
     {
-        if(targetSelectable != null)
-        print(targetSelectable.name);
+        
+        if (Input.GetButtonDown("Fire3"))
+            EndGame("Victory");
+        if (Input.GetButtonDown("Fire2"))
+            GameObject.Find("ScoreController").GetComponent<ScoreController>().GiveScore(10);
+    }
+
+
+    void LateUpdate ()
+    {
+        //if(targetSelectable != null)
+        //print(targetSelectable.name);
 
         if (Input.GetButtonDown("Cancel") && gameActive == true && lastState == "Resumed" && enable == true)
         {
@@ -56,10 +65,13 @@ public class UIController : MonoBehaviour
         {
             verticalAxisAvailable = false;
 
-            if (targetSelectable.GetComponent<Menubutton>().nextSelectable != null && targetSelectable.GetComponent<Menubutton>().nextSelectable.GetComponent<Selectable>().enabled == true)
+            if (targetSelectable != null)
             {
-                targetSelectable.GetComponent<Menubutton>().nextSelectable.GetComponentInChildren<Selectable>().Select();
-                targetSelectable = targetSelectable.GetComponent<Menubutton>().nextSelectable;
+                if (targetSelectable.GetComponent<Menubutton>().nextSelectable != null && targetSelectable.GetComponent<Menubutton>().nextSelectable.GetComponent<Selectable>().enabled == true)
+                {
+                    targetSelectable.GetComponent<Menubutton>().nextSelectable.GetComponentInChildren<Selectable>().Select();
+                    targetSelectable = targetSelectable.GetComponent<Menubutton>().nextSelectable;
+                }
             }
 
         }
@@ -68,52 +80,73 @@ public class UIController : MonoBehaviour
         {
             verticalAxisAvailable = false;
 
-            if (targetSelectable.GetComponent<Menubutton>().previousSelectable != null && targetSelectable.GetComponent<Menubutton>().previousSelectable.GetComponent<Selectable>().enabled == true)
+            if (targetSelectable != null)
             {
-                targetSelectable.GetComponent<Menubutton>().previousSelectable.GetComponentInChildren<Selectable>().Select();
-                targetSelectable = targetSelectable.GetComponent<Menubutton>().previousSelectable;
+                if (targetSelectable.GetComponent<Menubutton>().previousSelectable != null && targetSelectable.GetComponent<Menubutton>().previousSelectable.GetComponent<Selectable>().enabled == true)
+                {
+                    targetSelectable.GetComponent<Menubutton>().previousSelectable.GetComponentInChildren<Selectable>().Select();
+                    targetSelectable = targetSelectable.GetComponent<Menubutton>().previousSelectable;
+                }
             }
 
         }
 
         if (Input.GetAxisRaw("Horizontal") == -1)
         {
-           
-
-            if (targetSelectable.GetComponentInParent<Slider>() != null)
+            if (targetSelectable != null)
             {
-                targetSelectable.GetComponentInParent<Slider>().value--;
-            }
+                if (targetSelectable.GetComponent<Menubutton>() != null && horizontalAxisAvailable == true)
+                {
+                    if (targetSelectable.GetComponent<Menubutton>().SelectorBox == true)
+                        targetSelectable.GetComponentInParent<OptionScroller>().CycleLeft();
+                }
 
-            else if (targetSelectable.GetComponent<Menubutton>().leftSelectable != null && horizontalAxisAvailable == true && targetSelectable.GetComponent<Menubutton>().leftSelectable.GetComponent<Selectable>().enabled == true)
-            {
-                targetSelectable.GetComponent<Menubutton>().leftSelectable.GetComponentInChildren<Selectable>().Select();
-                targetSelectable = targetSelectable.GetComponent<Menubutton>().leftSelectable;
-            }
 
-            horizontalAxisAvailable = false;
+                if (targetSelectable.GetComponentInParent<Slider>() != null)
+                {
+                    targetSelectable.GetComponentInParent<Slider>().value--;
+                }
+
+                else if (targetSelectable.GetComponent<Menubutton>().leftSelectable != null && horizontalAxisAvailable == true && targetSelectable.GetComponent<Menubutton>().leftSelectable.GetComponent<Selectable>().enabled == true)
+                {
+                    targetSelectable.GetComponent<Menubutton>().leftSelectable.GetComponentInChildren<Selectable>().Select();
+                    targetSelectable = targetSelectable.GetComponent<Menubutton>().leftSelectable;
+                }
+
+                horizontalAxisAvailable = false;
+            }
 
         }
 
         if (Input.GetAxisRaw("Horizontal") == 1)
         {
-            
 
-            if (targetSelectable.GetComponentInParent<Slider>() != null)
+            if (targetSelectable != null)
             {
-                targetSelectable.GetComponentInParent<Slider>().value++;
-            }
+                if (targetSelectable.GetComponent<Menubutton>() != null && horizontalAxisAvailable == true)
+                {
+                    if (targetSelectable.GetComponent<Menubutton>().SelectorBox == true)
+                        targetSelectable.GetComponentInParent<OptionScroller>().CycleRight();
+                }
 
-            else if (targetSelectable.GetComponent<Menubutton>().rightSelectable != null && horizontalAxisAvailable == true && targetSelectable.GetComponent<Menubutton>().rightSelectable.GetComponent<Selectable>().enabled == true)
-            {
-                targetSelectable.GetComponent<Menubutton>().rightSelectable.GetComponentInChildren<Selectable>().Select();
-                targetSelectable = targetSelectable.GetComponent<Menubutton>().rightSelectable;
-            }
 
-            horizontalAxisAvailable = false;
+
+                if (targetSelectable.GetComponentInParent<Slider>() != null)
+                {
+                    targetSelectable.GetComponentInParent<Slider>().value++;
+                }
+
+                else if (targetSelectable.GetComponent<Menubutton>().rightSelectable != null && horizontalAxisAvailable == true && targetSelectable.GetComponent<Menubutton>().rightSelectable.GetComponent<Selectable>().enabled == true)
+                {
+                    targetSelectable.GetComponent<Menubutton>().rightSelectable.GetComponentInChildren<Selectable>().Select();
+                    targetSelectable = targetSelectable.GetComponent<Menubutton>().rightSelectable;
+                }
+
+                horizontalAxisAvailable = false;
+            }
         }
 
-        if (Input.GetButton("Submit") && targetSelectable != null)
+        if (Input.GetButtonDown("Submit") && targetSelectable != null)
         {
             if(targetSelectable.GetComponent<Button>() != null)
             targetSelectable.GetComponent<Button>().onClick.Invoke();
@@ -135,16 +168,42 @@ public class UIController : MonoBehaviour
 
     public void ActivateButton(string buttonName)
     {
-        GameObject.Find(buttonName).GetComponent<Selectable>().enabled = true;
-        GameObject.Find(buttonName).GetComponent<Image>().enabled = true;
+        if (GameObject.Find(buttonName).GetComponent<Selectable>() != null)
+            GameObject.Find(buttonName).GetComponent<Selectable>().enabled = true;
+
+        if (GameObject.Find(buttonName).GetComponent<Image>() != null)
+            GameObject.Find(buttonName).GetComponent<Image>().enabled = true;
         GameObject.Find(buttonName).GetComponentInChildren<Text>().enabled = true;
     }
 
     public void DisableButton(string buttonName)
     {
-        GameObject.Find(buttonName).GetComponent<Selectable>().enabled = false;
-        GameObject.Find(buttonName).GetComponent<Image>().enabled = false;
+        if(GameObject.Find(buttonName).GetComponent<Selectable>() != null)
+            GameObject.Find(buttonName).GetComponent<Selectable>().enabled = false;
+
+        if (GameObject.Find(buttonName).GetComponent<Image>() != null)
+            GameObject.Find(buttonName).GetComponent<Image>().enabled = false;
         GameObject.Find(buttonName).GetComponentInChildren<Text>().enabled = false;
+    }
+
+    public void EndGame(string VictoryOrDefeat)
+    {
+        GameObject.Find("ScoreController").GetComponent<ScoreController>().canSubmit = true;
+
+        PauseGame();
+        GameObject.Find("Settings").GetComponent<Canvas>().enabled = false;
+        GameObject.Find("EndLevelScreen").GetComponent<Canvas>().enabled = true;
+        targetSelectable = GameObject.Find("EndLevelScreen_defaultselectable");
+
+        if (VictoryOrDefeat == "Victory")
+        {
+            GameObject.Find("EndLevelTitle").GetComponent<Text>().text = "Level complete!";
+        }
+
+        if (VictoryOrDefeat == "Defeat")
+        {
+            GameObject.Find("EndLevelTitle").GetComponent<Text>().text = "Level failed!";
+        }
     }
 
 }
