@@ -18,7 +18,7 @@ public class BackGroundMusicHandler : MonoBehaviour {
 	void Update () {
 
 
-        print(AudioListener.volume);
+        //print(AudioListener.volume);
 
         gameObject.GetComponent<AudioSource>().volume = PlayerPrefs.GetFloat("BGMVolume");
             
