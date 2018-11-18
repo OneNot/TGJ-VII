@@ -266,5 +266,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bfee361d1311749bd10dfb1eb077a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BloodyMessPrefabRef: {fileID: 1379120163195054, guid: 664c852b4bb40834e8fc601a67029e1e,
+    type: 2}
   speed: 1
   spinningSpeed: 500
+  OnHitPitchDuration: 0.2
+  HowMuchToPitch: 2.5
+  volumeDivider: 4
