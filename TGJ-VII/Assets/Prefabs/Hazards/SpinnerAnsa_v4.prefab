@@ -122,7 +122,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bab035fe586821e4897511d904dedeea, type: 3}
+  - {fileID: 2100000, guid: 5da7b74a91a2e8544be1fd3a4f902fd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -157,7 +157,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: bab035fe586821e4897511d904dedeea, type: 3}
+  - {fileID: 2100000, guid: 5da7b74a91a2e8544be1fd3a4f902fd8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -356,13 +356,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1073823787986526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00bfee361d1311749bd10dfb1eb077a8, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  BloodyMessPrefabRef: {fileID: 1379120163195054, guid: 664c852b4bb40834e8fc601a67029e1e,
-    type: 2}
-  speed: 2
-  spinningSpeed: 20
-  OnHitPitchDuration: 0.2
-  HowMuchToPitch: 2.5
-  volumeDivider: 4
