@@ -1137,7 +1137,7 @@ Animator:
   m_GameObject: {fileID: 1981677333745890}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a8f85f30609e66047bd3d6a8f338beef, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07a31c25d1eab404580f277c48d43961, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   MoveSpeed: 10
   LookSpeed: 4
   FlagDeSpawnDelay: 2
-  FlagPrefab: {fileID: 0}
+  FlagPrefab: {fileID: 1088812329892788, guid: 9311a64ee1db73a43b3c59240960e39a, type: 2}
 --- !u!136 &136242816443459348
 CapsuleCollider:
   m_ObjectHideFlags: 1
