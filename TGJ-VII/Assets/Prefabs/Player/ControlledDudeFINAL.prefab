@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 136642553071997584}
   - component: {fileID: 95448230606086914}
   m_Layer: 0
-  m_Name: TubeDudeFINAL
+  m_Name: ControlledDudeFINAL
   m_TagString: ControlledDude
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
