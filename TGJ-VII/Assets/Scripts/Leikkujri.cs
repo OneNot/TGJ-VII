@@ -10,6 +10,7 @@ public class Leikkujri : MonoBehaviour {
     public float spinningSpeed;
     public float OnHitPitchDuration = 0.2f;
     public float HowMuchToPitch = 2.5f;
+    public float volumeDivider = 4f;
 
     private float pitchUpTime;
     private bool pitched;
@@ -17,7 +18,7 @@ public class Leikkujri : MonoBehaviour {
 
 	void Start () {
         aS = GetComponent<AudioSource>();
-        aS.volume = PlayerPrefs.GetFloat("SFXVolume", 1f) / 5;
+        aS.volume = PlayerPrefs.GetFloat("SFXVolume", 1f) / volumeDivider;
         aS.Play();
 	}
 	
