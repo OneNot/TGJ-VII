@@ -1157,10 +1157,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e698c91e648d8d42ad214710a4dcb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 4
   roamSpeed: 2
   roamDelay: 2
-  dudeFollowRange: 5
+  dudeFollowRange: 15
   dudeFollowCap: 2
   spawnArea: 5
   inSuckerRange: 0

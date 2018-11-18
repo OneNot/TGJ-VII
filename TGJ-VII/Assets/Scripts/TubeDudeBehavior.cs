@@ -9,6 +9,7 @@ public class TubeDudeBehavior : MonoBehaviour
     public float moveSpeed;
     public float roamSpeed;
     public float roamDelay;
+    private float rangeHolder;
     public float dudeFollowRange;
     public float dudeFollowCap;
     float playerDist;
@@ -39,6 +40,8 @@ public class TubeDudeBehavior : MonoBehaviour
         startPosition = transform.position;
         parSysEm = GetComponentInChildren<ParticleSystem>().emission;
         parSysEm.enabled = false;
+        rangeHolder = dudeFollowRange;
+        dudeFollowRange = spawnArea;
     }
 
     // Update is called once per frame
@@ -86,7 +89,6 @@ public class TubeDudeBehavior : MonoBehaviour
             }
         }
 
-        //This part determines to follow the flag, if it's in distance
         if (isFlagged == true)
         {
             FollowFlag();
@@ -98,11 +100,13 @@ public class TubeDudeBehavior : MonoBehaviour
         {
             playerDist = Vector3.Distance(controlledDude.transform.position, transform.position);
 
+
             if (dudeFollowRange > playerDist && isFlagged == false)
             {
-                isFollowing = true;
-                spawnProtected = false;
+                dudeFollowRange = rangeHolder;
                 isControllable = true;
+                spawnProtected = false;
+                isFollowing = true;
                 isWandering = false;
 
                 //if not currently emmiting, start
