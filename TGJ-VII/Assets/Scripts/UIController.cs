@@ -30,16 +30,17 @@ public class UIController : MonoBehaviour
     void Start () {
     
         targetSelectable = GameObject.Find("Mainmenu_defaultselectable");
-        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume") / 100;
+        AudioListener.volume = PlayerPrefs.GetFloat("MasterVolume",50) / 100;
 	}
 
     void Update()
     {
-        
+        /*
         if (Input.GetButtonDown("Fire3"))
             EndGame("Victory");
         if (Input.GetButtonDown("Fire2"))
             GameObject.Find("ScoreController").GetComponent<ScoreController>().GiveScore(10);
+            */
     }
 
 
