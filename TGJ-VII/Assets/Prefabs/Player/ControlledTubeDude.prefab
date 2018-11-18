@@ -1160,7 +1160,7 @@ MonoBehaviour:
   MoveSpeed: 10
   LookSpeed: 4
   FlagDeSpawnDelay: 2
-  FlagPrefab: {fileID: 100000, guid: 170c49f0d9b04e042a6d485d0fa195ac, type: 3}
+  FlagPrefab: {fileID: 100002, guid: 5a35522831473ca40b99b5877d8f091f, type: 3}
 --- !u!136 &136242816443459348
 CapsuleCollider:
   m_ObjectHideFlags: 1
