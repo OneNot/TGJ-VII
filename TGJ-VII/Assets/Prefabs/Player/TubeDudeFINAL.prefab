@@ -346,7 +346,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4944778693850146}
   - component: {fileID: 137304875711954634}
-  - component: {fileID: 33496665606548866}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -858,13 +857,6 @@ Transform:
   m_Father: {fileID: 4627950984415496}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &33496665606548866
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1751816794602158}
-  m_Mesh: {fileID: 4300000, guid: 1ce1faa234f657a4f8b31006c26bf756, type: 3}
 --- !u!54 &54021317380645476
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -1113,7 +1105,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1883670045917270}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 731efe3941f4254468c919bdc3f15891, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 4f673e009bc001c4892590d11cb24439, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1137,7 +1129,7 @@ MonoBehaviour:
   MoveSpeed: 6
   LookSpeed: 4
   FlagDeSpawnDelay: 2
-  FlagPrefab: {fileID: 100000, guid: b51c3a80a6b6fb5458c12c63bf5888d4, type: 3}
+  FlagPrefab: {fileID: 1627701523360772, guid: 59f5b3a16006db649ae70159a9fa6a00, type: 2}
 --- !u!136 &136642553071997584
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1190,7 +1182,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 1ce1faa234f657a4f8b31006c26bf756, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 4f673e009bc001c4892590d11cb24439, type: 3}
   m_Bones:
   - {fileID: 4735036705557964}
   - {fileID: 4523444247435012}

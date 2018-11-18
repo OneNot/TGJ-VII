@@ -5,7 +5,6 @@ using UnityEngine;
 public class ControlRespawn : MonoBehaviour {
 
     private GameObject[] tubeDudet;
-    public bool isControllable;
     private Vector3 spawnPosition;
     public GameObject controllableDude;
     
