@@ -1162,7 +1162,7 @@ MonoBehaviour:
   roamDelay: 2
   dudeFollowRange: 15
   dudeFollowCap: 2
-  spawnArea: 5
+  spawnArea: 3
   inSuckerRange: 0
   isControllable: 0
   flagRange: 3
