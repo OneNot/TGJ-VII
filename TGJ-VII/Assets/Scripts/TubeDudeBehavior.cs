@@ -13,6 +13,7 @@ public class TubeDudeBehavior : MonoBehaviour
     public float dudeFollowCap;
     float playerDist;
     private GameObject controlledDude;
+    private ParticleSystem.EmissionModule parSysEm;
 
     //Variables used for spawn protection
     float origoDist;
@@ -36,7 +37,8 @@ public class TubeDudeBehavior : MonoBehaviour
     {
         rb = transform.GetComponent<Rigidbody>();
         startPosition = transform.position;
-
+        parSysEm = GetComponentInChildren<ParticleSystem>().emission;
+        parSysEm.enabled = false;
     }
 
     // Update is called once per frame
@@ -50,7 +52,6 @@ public class TubeDudeBehavior : MonoBehaviour
 
     public void BehaviorCheck()
     {
-
         //------------
         //This block is to determine when to wander
         if (isWandering == true && isFlagged == false && isFollowing == false)
@@ -72,6 +73,12 @@ public class TubeDudeBehavior : MonoBehaviour
             if (flagDist < flagRange)
             {
                 isFlagged = true;
+
+                //if not currently emmiting, start
+                if(!parSysEm.enabled)
+                {
+                    parSysEm.enabled = true;
+                }
             }
             else
             {
@@ -97,6 +104,12 @@ public class TubeDudeBehavior : MonoBehaviour
                 spawnProtected = false;
                 isControllable = true;
                 isWandering = false;
+
+                //if not currently emmiting, start
+                if (!parSysEm.enabled)
+                {
+                    parSysEm.enabled = true;
+                }
             }
 
             if (isFollowing == true && isFlagged == false)
@@ -143,6 +156,20 @@ public class TubeDudeBehavior : MonoBehaviour
 
     public void WanderAround()
     {
+
+        //if currently emmiting, stop
+        if (parSysEm.enabled)
+        {
+            parSysEm.enabled = false; //stop emmiting particles if start wandering
+        }
+
+        //when wandering set "is controllable" to false if it isn't already =====
+        if(isControllable)
+        {
+            isControllable = false;
+        }
+        //=======================================================================
+
         if (spawnProtected)
         {
             origoDist = Vector3.Distance(startPosition, transform.position);
@@ -189,6 +216,11 @@ public class TubeDudeBehavior : MonoBehaviour
             transform.Translate(Vector3.forward * roamSpeed * Time.deltaTime);
             yield return new WaitForSeconds(roamDelay);
         }
+    }
+
+    public void StopEffect()
+    {
+        GetComponentInChildren<ParticleSystem>().Stop();
     }
 
     public void ActivateRagdoll()

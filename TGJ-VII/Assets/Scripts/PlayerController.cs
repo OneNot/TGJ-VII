@@ -12,25 +12,25 @@ public class PlayerController : MonoBehaviour {
     private float inputHor, inputVer, flagPlantTime = 0f;
     private bool plantFlagInput, flagPlanted = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         rb = GetComponent<Rigidbody>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update() {
         inputHor = Input.GetAxis("Horizontal");
         inputVer = Input.GetAxis("Vertical");
-        
+
         plantFlagInput = Input.GetButtonDown("PlantFlag");
 
-        if(plantFlagInput && !flagPlanted)
+        if (plantFlagInput && !flagPlanted)
         {
             Instantiate(FlagPrefab, transform.position, Quaternion.Euler(Vector3.zero));
             flagPlanted = true;
             flagPlantTime = Time.time;
         }
-        else if(plantFlagInput && flagPlanted && (Time.time - flagPlantTime > FlagDeSpawnDelay))
+        else if (plantFlagInput && flagPlanted && (Time.time - flagPlantTime > FlagDeSpawnDelay))
         {
             Destroy(GameObject.FindGameObjectWithTag("Flag"));
             flagPlanted = false;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 
 
         input = new Vector3(inputHor, 0f, inputVer);
-        if(input != Vector3.zero)
+        if (input != Vector3.zero)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(input), 0.15F);
 
 
@@ -47,5 +47,10 @@ public class PlayerController : MonoBehaviour {
     private void FixedUpdate()
     {
         rb.MovePosition(transform.position + input * Time.deltaTime * MoveSpeed);
+    }
+
+    public void StopEffect()
+    {
+        GetComponentInChildren<ParticleSystem>().Stop();
     }
 }
