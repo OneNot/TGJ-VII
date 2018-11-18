@@ -8,10 +8,11 @@ public class InputField : MonoBehaviour {
 
     public GameObject ScoreController;
     public Text text;
+    GameObject UIController;
 
     // Use this for initialization
     void Start() {
-
+        UIController = GameObject.Find("UIController");
         ScoreController = GameObject.Find("ScoreController");
     }
 
@@ -25,5 +26,17 @@ public class InputField : MonoBehaviour {
     public void UpdatePlayerName()
     {
         ScoreController.GetComponent<ScoreController>().playerName = text.text;
+    }
+
+    public void DisableInput()
+    {
+        UIController.GetComponent<UIController>().textFieldActive = true;
+
+    }
+
+    public void EnableInput()
+    {
+        UIController.GetComponent<UIController>().textFieldActive = false;
+
     }
 }
