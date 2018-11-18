@@ -1136,7 +1136,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1981677333745890}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a8f85f30609e66047bd3d6a8f338beef, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 731efe3941f4254468c919bdc3f15891, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -1160,7 +1160,7 @@ MonoBehaviour:
   MoveSpeed: 10
   LookSpeed: 4
   FlagDeSpawnDelay: 2
-  FlagPrefab: {fileID: 0}
+  FlagPrefab: {fileID: 100000, guid: 170c49f0d9b04e042a6d485d0fa195ac, type: 3}
 --- !u!136 &136242816443459348
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1213,7 +1213,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: a8f85f30609e66047bd3d6a8f338beef, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 731efe3941f4254468c919bdc3f15891, type: 3}
   m_Bones:
   - {fileID: 4193375517398870}
   - {fileID: 4138979878273006}
