@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mainmenu.unity
     guid: e80d59813ba3cc549b075935e06792be
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HegenScene.unity
     guid: e290a958236ed8f4fb93f75a5076835f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/HegenScene2.unity
     guid: ef10851f9f6fd894da6dd50a201a39b3
   m_configObjects: {}
